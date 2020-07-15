@@ -1,5 +1,7 @@
 package died.ejemplos.servicios;
 
+import java.util.List;
+
 import died.ejemplos.dao.CamionDao;
 import died.ejemplos.dao.CamionDaoMysql;
 import died.ejemplos.dominio.Camion;
@@ -13,6 +15,11 @@ public class CamionService {
 		// puede agregar un camion si no se cumplen determinadas
 		// condiciones en otras entidades o reglas 
 		// se valida aquí
-		return this.camionDao.saveOrUpdate(c);
+			return this.camionDao.saveOrUpdate(c);
 	}
+	
+	public List<Camion> buscarTodos() {
+		return camionDao.buscarTodos();
+	}
+
 }

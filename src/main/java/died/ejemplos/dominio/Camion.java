@@ -70,6 +70,10 @@ public class Camion {
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
+	@Override
+	public String toString() {
+		return "id=" + id + "; patente=" + patente + "; marca=" + marca + "; modelo=" + modelo + "]";
+	}
 	
 	
 }

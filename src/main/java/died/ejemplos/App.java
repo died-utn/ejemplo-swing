@@ -22,7 +22,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 
-import died.ejemplos.gui.PanelCamiones;
+import died.ejemplos.gui.ayuda.PanelAyuda;
+import died.ejemplos.gui.camiones.PanelCamiones;
 
 // extiende de una ventana en el S.O
 public class App extends JFrame {
@@ -52,7 +53,9 @@ public class App extends JFrame {
 		this.menuItemCamion.addActionListener( e -> {
 			System.out.println("LISTENER 1");
 			this.setContentPane(new PanelCamiones());
-			this.pack();
+			//this.pack();
+			this.revalidate();
+			this.repaint();
 		});
 		this.menuItemCamion.addActionListener( e -> {
 			System.out.println("LISTENER 2");
@@ -68,6 +71,13 @@ public class App extends JFrame {
 		this.menuAyuda = new JMenu("Ayuda");
 		this.menuItemAyuda = new JMenuItem("Manual");
 		this.menuItemAyuda.setMnemonic(KeyEvent.VK_F1);
+		this.menuItemAyuda.addActionListener( e -> {
+			PanelAyuda panel = new PanelAyuda();
+			panel.armarPanel();
+			this.setContentPane(panel);	
+			this.revalidate();
+			this.repaint();
+		}); 
 		this.menuAyuda.add(menuItemAyuda);
 
 		menuBar.add(this.menuArchivo);
@@ -157,11 +167,16 @@ public class App extends JFrame {
 			       // handle exception
 			    }
 				  App app = new App();
+				  app.setTitle("Sistema de gestion logística - TP DIED 2020 ");
+				  // no hacer nada cuando presiona la cruz para cerrar
 				  app.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-				app.armarApp();
-				app.setSize(1020, 750);
-				app.setVisible(true);
-				System.out.println("app creada");
+				  app.armarApp();
+				  // seteo el tamaño fijo
+				  // app.setSize(1020, 750);
+				  // para que aparezca maximizado
+				  app.setExtendedState(app.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+				  app.setVisible(true);
+				  System.out.println("app creada");
 			}
 		});
 	}
